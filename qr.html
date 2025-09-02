@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PawCare — Golden Payment</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/styles.css">
+  <script>
+    // Parse query params
+    function getParams() {
+      const params = new URLSearchParams(window.location.search);
+      return {
+        plan: params.get("plan") || "monthly",
+        amount: params.get("amount") || "299"
+      };
+    }
+
+    function activateMembership(plan) {
+      // Save membership in localStorage
+      localStorage.setItem("pawcare_is_golden", "1");
+      localStorage.setItem("pawcare_golden_plan", plan);
+
+      alert("✅ Golden Membership Activated!\nEnjoy free shipping + booking discounts.");
+      window.location.href = "index.html#golden"; // redirect to home
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const { plan, amount } = getParams();
+      document.getElementById("planName").textContent = 
+        plan === "yearly" ? "Yearly Golden Membership" : "Monthly Golden Membership";
+      document.getElementById("planAmt").textContent = "₹" + amount;
+    });
+  </script>
+</head>
+<body>
+  <!-- Topbar -->
+  <header class="topbar">
+    <div class="container nav">
+      <a href="index.html#home" class="logo">Paw<span>Care</span>!</a>
+      <nav class="menu">
+        <a href="health.html">Health</a>
+        <a href="shop.html">Shop</a>
+        <a href="bookings.html">Bookings</a>
+        <a href="index.html#why">Why PawCare</a>
+        <a href="index.html#reviews">Reviews</a>
+        <a href="index.html#careers">Join Our Team</a>
+      </nav>
+      <div class="cta-phone">(866) 338-2463</div>
+      <a href="join-golden.html" class="btn-gold">Golden Member</a>
+      <button class="hamburger" aria-label="Open menu">☰</button>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main class="section">
+    <div class="container card soft" style="max-width:600px; text-align:center;">
+      <h1 id="planName">Golden Membership</h1>
+      <p>Amount Payable: <strong id="planAmt">₹299</strong></p>
+
+      <!-- QR Code Placeholder -->
+      <img src="assets/img/qr-demo.png" alt="QR Code" style="max-width:250px; margin:1rem auto; display:block;">
+
+      <p>Scan the QR to pay. Once paid, click below:</p>
+      <button class="btn-primary" onclick="activateMembership(getParams().plan)">
+        ✅ Activate Membership
+      </button>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container foot-grid">
+      <div><div class="phone">☎ (866) 338-2463</div></div>
+      <div class="badges"><span class="badge">App Store</span><span class="badge">Google Play</span></div>
+    </div>
+    <div class="copy">© <span id="year"></span> PawCare. All rights reserved.</div>
+  </footer>
+</body>
+</html>

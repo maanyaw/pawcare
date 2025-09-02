@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Join PawCare Golden</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/styles.css">
+  <script defer src="js/app.js"></script>
+</head>
+<body>
+  <!-- Topbar -->
+  <header class="topbar">
+    <div class="container nav">
+      <a href="index.html#home" class="logo">Paw<span>Care</span>!</a>
+      <nav class="menu">
+        <a href="health.html">Health</a>
+        <a href="shop.html">Shop</a>
+        <a href="bookings.html">Bookings</a>
+        <a href="index.html#why">Why PawCare</a>
+        <a href="index.html#reviews">Reviews</a>
+        <a href="index.html#careers">Join Our Team</a>
+      </nav>
+      <div class="cta-phone">(866) 338-2463</div>
+      <a href="join-golden.html" class="btn-gold" id="navGoldBtn">Golden Member</a>
+      <button class="hamburger" aria-label="Open menu">☰</button>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main class="section">
+    <div class="container" style="max-width:980px">
+      <h1 class="page-title">Become a <span class="text-gold">Golden</span> Member</h1>
+      <p class="lead">Unlimited expert chat, free shipping on shop orders, and member-only booking discounts.</p>
+
+      <!-- Plans -->
+      <div class="plan-grid">
+        <article class="plan-card">
+          <h3>Monthly</h3>
+          <div class="price">₹299<span class="per">/mo</span></div>
+          <ul class="plan-list">
+            <li>Unlimited expert chat</li>
+            <li>Free shipping on shop orders</li>
+            <li>15% off bookings</li>
+            <li>Early access to new features</li>
+          </ul>
+          <!-- Redirect to QR -->
+          <button class="btn-primary" 
+                  onclick="window.location.href='qr.html?plan=monthly&amount=299'">
+            Join Monthly
+          </button>
+        </article>
+
+        <article class="plan-card best">
+          <div class="ribbon">Best Value</div>
+          <h3>Yearly</h3>
+          <div class="price">₹2,499<span class="per">/yr</span></div>
+          <ul class="plan-list">
+            <li>All Golden benefits</li>
+            <li>Saves 30% vs monthly</li>
+            <li>Priority support</li>
+          </ul>
+          <!-- Redirect to QR -->
+          <button class="btn-primary" 
+                  onclick="window.location.href='qr.html?plan=yearly&amount=2499'">
+            Join Yearly
+          </button>
+        </article>
+      </div>
+
+      <!-- Existing Member -->
+      <div class="card soft" style="margin-top:1.4rem">
+        <h3>Already a member?</h3>
+        <p>Your benefits are active automatically when you’re logged in on this device.</p>
+        <a href="index.html#golden" class="btn-ghost">Manage membership</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container foot-grid">
+      <div><div class="phone">☎ (866) 338-2463</div></div>
+      <div class="badges"><span class="badge">App Store</span><span class="badge">Google Play</span></div>
+    </div>
+    <div class="copy">© <span id="year"></span> PawCare. All rights reserved.</div>
+  </footer>
+</body>
+</html>

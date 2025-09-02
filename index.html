@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PawCare — Health • Shop • Bookings</title>
+  <meta name="description" content="PawCare: AI-powered pet health & nutrition plans, a sustainable shop, and trusted bookings." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+  <!-- Site styles (your existing file) -->
+  <link rel="stylesheet" href="css/index.css">
+
+  <!-- Ensure the hero shows a photo regardless of global CSS -->
+  <style>
+    .hero {
+      position: relative;
+      min-height: 64vh;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      color: #fff;
+      isolation: isolate;
+    }
+    .hero::before{
+      content:"";
+      position:absolute; inset:0;
+      background: linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.45));
+      z-index:0;
+    }
+    .hero-img{
+      position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+      z-index:-1; filter:saturate(1.05);
+    }
+    .hero-card{
+      position:relative; z-index:1;
+      background: rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.25);
+      backdrop-filter: blur(4px);
+      border-radius: 16px;
+      padding: 1.2rem 1.4rem;
+      box-shadow: 0 10px 24px rgba(0,0,0,.18);
+      text-align:center;
+      max-width:640px;
+    }
+    .hero-quote{ font-family:"Playfair Display", serif; font-size:clamp(22px,3.5vw,34px); margin:.2rem 0 1rem }
+    /* simple helper so missing images show a soft placeholder */
+    img[data-ph] { background:#eaf2f4 }
+    img[data-ph][onerror] { background:#eaf2f4 }
+  </style>
+
+  <script defer src="js/app.js"></script>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header class="topbar">
+    <div class="container nav">
+      <a href="#home" class="logo">Paw<span>Care</span>!</a>
+      <nav class="menu" id="menu">
+        <a href="health.html">Health</a>
+        <a href="shop.html">Shop</a>
+        <a href="bookings.html">Bookings</a>
+        <a href="#why">Why PawCare</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#careers">Join Our Team</a>
+        
+      </nav>
+      <div class="cta-phone">(866) 338-2463</div>
+      <a href="join-golden.html?return=index.html%23golden" class="btn-gold" id="navGoldBtn">Golden Member</a>
+      <button class="hamburger" id="hamburger" aria-label="Open menu">☰</button>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <main id="home">
+    <section class="hero" aria-label="Hero banner">
+      <img class="hero-img" data-ph
+           src="assets/img/hero-dog.png"
+           alt="Happy dog with PawCare walker"
+           onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%221200%22 height=%22700%22><rect width=%221200%22 height=%22700%22 fill=%22%230f6a63%22/><text x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%23ffffff%22 font-family=%22Arial%22 font-size=%2230%22>PawCare Hero Image</text></svg>';">
+      <div class="container">
+        <div class="hero-card">
+          <p class="hero-quote">“We care for them like you do.”</p>
+          <a href="bookings.html" class="btn-primary">Find PawCare Services 🐾</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- REVIEWS -->
+    <section id="reviews" class="section">
+      <div class="container card">
+        <h2 style="margin-bottom:.6rem;">What pet parents say</h2>
+        <div style="display:flex; gap:1rem; overflow:auto; scroll-snap-type:x mandatory;">
+          <article class="card" style="min-width:320px; scroll-snap-align:start;">
+            <strong>Melissa P.</strong> <span class="badge-free">Google</span>
+            <p>“Always a great experience. My cats are well taken care of.”</p>
+          </article>
+          <article class="card" style="min-width:320px; scroll-snap-align:start;">
+            <strong>Jill B.</strong> <span class="badge-free">Google</span>
+            <p>“Great service with PawCare!”</p>
+          </article>
+          <article class="card" style="min-width:320px; scroll-snap-align:start;">
+            <strong>Rich T.</strong> <span class="badge-free">Google</span>
+            <p>“Loved the GPS walking notes and photos.”</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY PAWCARE -->
+    <section id="why" class="bg-cream section">
+      <div class="container grid-why">
+        <div>
+          <h2>Pet Care For Every Type & Breed</h2>
+          <p>Our services adapt to each pet’s needs to keep them happy and healthy — daily walks, overnight care, or special requirements.</p>
+          <a class="btn-ghost" href="bookings.html">Learn More</a>
+        </div>
+        <div class="video">
+          <img data-ph src="assets/img/walker.png" alt="PawCare overview"
+               onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22600%22 height=%22340%22><rect width=%22600%22 height=%22340%22 fill=%22%23e8eef0%22/><text x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%23738a94%22 font-family=%22Arial%22 font-size=%2216%22>Why PawCare image</text></svg>';">
+          <div class="play">▶</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROS -->
+    <section class="pros">
+      <div class="container grid-pros">
+        <div class="pros-media">
+          <img data-ph src="assets/img/pet-pros.png" alt="PawCare sitter with pets"
+               onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22600%22 height=%22380%22><rect width=%22600%22 height=%22380%22 fill=%22%23e8eef0%22/></svg>';">
+        </div>
+        <div>
+          <h2>Our Pet Pros</h2>
+          <ul>
+            <li>Background & identity checks</li>
+            <li>Onboarding & training completed</li>
+            <li>Safety, hygiene & emergency protocols</li>
+            <li>Verified profiles & reviews</li>
+          </ul>
+          <a class="btn-ghost" href="#careers">Join Our Team</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="bookings" class="services">
+      <div class="container">
+        <h2>Our Pet Care Services</h2>
+        <div class="grid-services">
+          <article class="svc"><div class="svc-icon">🐶</div><h3>Dog Walking</h3><p>30/45/60-minute walks with GPS route sharing.</p></article>
+          <article class="svc"><div class="svc-icon">🏠</div><h3>Pet Sitting</h3><p>Drop-ins or in-home sits to keep routine steady.</p></article>
+          <article class="svc"><div class="svc-icon">🌙</div><h3>Overnight Care</h3><p>Evening & morning checks or full overnights.</p></article>
+          <article class="svc"><div class="svc-icon">🛁</div><h3>Grooming</h3><p>Bath, brush, nails and tidy-ups by pros.</p></article>
+          <article class="svc"><div class="svc-icon">🏥</div><h3>Vet Visits</h3><p>Safe pet taxi to the vet; notes on return.</p></article>
+          <article class="svc"><div class="svc-icon">🏩</div><h3>Pet Crèches</h3><p>Verified day-care partners for play & rest.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- HEALTH HIGHLIGHT -->
+    <section class="feature-split" id="health">
+      <div class="container grid-split">
+        <div>
+          <h2>AI-Powered Health & Nutrition</h2>
+          <p>Personalized calories, macros, meals, warnings and “why” — coming up on the dedicated Health page.</p>
+          <a class="btn-primary" href="health.html">Preview</a>
+        </div>
+        <div class="split-media">
+          <img data-ph src="assets/img/health-hero.png" alt="AI Health preview"
+               onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22480%22 height=%22320%22><rect width=%22480%22 height=%22320%22 fill=%22%23e8eef0%22/></svg>';">
+        </div>
+      </div>
+    </section>
+
+    <!-- SHOP HIGHLIGHT -->
+    <section id="shop" class="feature-split">
+      <div class="container grid-split reverse">
+        <div>
+          <h2>Sustainable Pet Shop</h2>
+          <p>Eco-friendly bowls, toys and care made from bamboo, hemp and recycled materials.</p>
+          <a class="btn-primary" href="shop.html">Browse Products</a>
+        </div>
+        <div class="split-media">
+          <img data-ph src="assets/img/shop-hero.png" alt="Sustainable Pet Shop"
+               onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22480%22 height=%22320%22><rect width=%22480%22 height=%22320%22 fill=%22%23e8eef0%22/></svg>';">
+        </div>
+      </div>
+    </section>
+
+    <!-- GOLDEN MEMBERSHIP -->
+    <section id="golden" class="bg-cream section">
+      <div class="container">
+        <h2>PawCare Golden Membership</h2>
+        <div class="card">
+          <h3>Benefits</h3>
+          <ul>
+            <li><strong>Unlimited chats</strong> with PawCare experts</li>
+            <li><strong>Free shipping</strong> on all shop orders</li>
+            <li><strong>Discounts</strong> on bookings (walks, grooming, crèches)</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Compare Plans</h3>
+          <table class="plan-table">
+            <thead>
+              <tr><th>Feature</th><th>Free</th><th>Golden</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Expert chat support</td><td>—</td><td>✓ Unlimited</td></tr>
+              <tr><td>Shipping on shop orders</td><td>Paid</td><td>✓ Free</td></tr>
+              <tr><td>Booking discounts</td><td>—</td><td>✓ Member rates</td></tr>
+              <tr><td>Early feature access</td><td>—</td><td>✓ Included</td></tr>
+            </tbody>
+          </table>
+          <div class="gold-cta">
+            <p><strong>Ready?</strong> Unlock Golden now.</p>
+            <a href="join-golden.html?return=index.html%23golden" class="btn-primary">Join Golden</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CAREERS -->
+    <section id="careers" class="section">
+      <div class="container">
+        <h2>Join PawCare</h2>
+        <div class="grid-services">
+          <article class="card">
+            <img data-ph src="assets/img/walker2.png" alt="Job" style="width:100%;border-radius:12px;margin-bottom:.6rem"
+                 onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22480%22 height=%22320%22><rect width=%22480%22 height=%22320%22 fill=%22%23e8eef0%22/></svg>';">
+            <h3>Job Opportunities</h3>
+            <p>Walk dogs, pet sit and care for pets on your schedule.</p>
+            <a class="btn-ghost" href="jobs.html">Learn More</a>
+          </article>
+          <article class="card">
+            <img data-ph src="assets/img/partner.png" alt="Partner" style="width:100%;border-radius:12px;margin-bottom:.6rem"
+                 onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22480%22 height=%22320%22><rect width=%22480%22 height=%22320%22 fill=%22%23e8eef0%22/></svg>';">
+            <h3>Partner with PawCare</h3>
+            <p>Operate a local PawCare area with our brand & tools.</p>
+            <a class="btn-ghost" href="partner.html">Learn More</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA BAND -->
+    <section class="cta-band">
+      <div class="container">
+        <h2>Your Pet’s Best Care Awaits!</h2>
+        <a class="btn-primary" href="bookings.html">Find a Provider Near You</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container foot-grid">
+      <div>
+        <div class="phone">☎ (866) 338-2463</div>
+        <nav class="foot-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Use</a>
+          <a href="#">About Us</a>
+          <a href="#careers">Join Our Team</a>
+          <a href="#">Blog</a>
+        </nav>
+      </div>
+      <div class="badges">
+        <span class="badge">App Store</span>
+        <span class="badge">Google Play</span>
+      </div>
+    </div>
+    <div class="copy">© <span id="year"></span> PawCare. All rights reserved.</div>
+  </footer>
+</body>
+</html>
