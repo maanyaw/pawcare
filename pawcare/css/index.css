@@ -1,0 +1,197 @@
+/* ========== Base ========== */
+body {
+  font-family: "Poppins", sans-serif;
+  background: #f8fbfb;
+  color: #112727;
+  line-height: 1.7;
+}
+h1, h2, h3 {
+  font-family: "Playfair Display", serif;
+  font-weight: 700;
+}
+a { text-decoration: none; color: inherit; }
+img { max-width: 100%; border-radius: 12px; display: block; }
+
+/* ========== Navbar ========== */
+.topbar {
+  background: #0f6c6d;
+  color: #fff;
+  position: sticky;
+  top: 0; z-index: 1000;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+.nav {
+  display: flex; align-items: center; justify-content: space-between;
+  height: 70px; padding: 0 24px;
+}
+.logo { font-size: 24px; font-weight: 700; color: #fff; }
+.logo span { color: #f4b72a; }
+.menu { display: flex; gap: 20px; }
+.menu a {
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-weight: 500;
+  color: #e5f8f8;
+  transition: 0.3s;
+}
+.menu a:hover { background: rgba(255,255,255,0.15); }
+
+/* ========== Buttons ========== */
+.btn-primary, .btn-gold {
+  background: #f4b72a; color: #112727;
+  padding: 12px 28px;
+  border-radius: 40px;
+  font-weight: 600;
+  display: inline-block;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+.btn-primary:hover, .btn-gold:hover {
+  background: #e3a619;
+  transform: translateY(-2px);
+}
+
+/* ========== Hero Section ========== */
+.hero {
+  position: relative;
+  height: 80vh;
+  display: flex; align-items: center; justify-content: center;
+  text-align: center;
+  color: #fff;
+}
+.hero-img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%; object-fit: cover;
+  filter: brightness(0.55);
+}
+.hero-card {
+  background: rgba(0,0,0,0.55);
+  padding: 40px 50px;
+  border-radius: 16px;
+  max-width: 720px;
+  animation: fadeUp 1s ease-in-out;
+}
+.hero-quote {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ========== Sections ========== */
+.section { padding: 80px 20px; }
+.section h2 {
+  font-family: "Playfair Display", serif;
+  font-size: 32px;
+  margin-bottom: 24px;
+  text-align: center;
+}
+.bg-cream { background: #fbf7f0; }
+
+/* ========== Reviews Slider ========== */
+#reviews .card {
+  padding: 20px;
+  border-radius: 14px;
+  background: #fff;
+  border: 1px solid #e7eef0;
+  min-width: 280px;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+  transition: transform 0.25s ease;
+}
+#reviews .card:hover { transform: translateY(-6px); }
+
+/* ========== Why PawCare Section ========== */
+.grid-why {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 50px; align-items: center;
+}
+.grid-why img { border-radius: 16px; box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
+
+/* ========== Pros Section ========== */
+.grid-pros {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 50px; align-items: center;
+}
+.pros ul { margin: 20px 0; padding-left: 20px; font-size: 16px; }
+.pros li { margin-bottom: 10px; }
+
+/* Services Grid Improvements */
+.grid-services {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 28px;
+  margin-top: 20px;
+}
+
+.svc {
+  background: linear-gradient(180deg, #ffffff, #f8fbfb);
+  border: 1px solid #e7eef0;
+  border-radius: 16px;
+  padding: 24px;
+  text-align: center;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+}
+
+.svc:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+  background: linear-gradient(180deg, #fefefe, #f3f9f9);
+}
+
+.svc-icon {
+  font-size: 44px;
+  margin-bottom: 12px;
+  display: inline-block;
+}
+
+.svc h3 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #0e3b3c;
+  margin-bottom: 10px;
+}
+
+.svc p {
+  font-size: 15px;
+  color: #6f8686;
+  line-height: 1.5;
+}
+
+/* ========== Feature Sections ========== */
+.section {
+  padding: 80px 20px;
+}
+.bg-cream { background: #fbf7f0; }
+.grid-split {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 50px; align-items: center;
+}
+.grid-split.reverse { direction: rtl; }
+.grid-split.reverse > * { direction: ltr; }
+/* ========== Membership Table ========== */
+.plan-table {
+  width: 100%; border-collapse: collapse; margin-top: 20px;
+}
+.plan-table th {
+  background: #0f6c6d; color: #fff;
+  padding: 12px; text-align: left;
+}
+.plan-table td {
+  padding: 12px;
+  border: 1px solid #e7eef0;
+}
+.gold-cta { margin-top: 20px; text-align: center; }
+
+/* ========== Footer ========== */
+.footer {
+  background: #0b5657;
+  color: #d8f0ef;
+  padding: 40px 20px;
+  margin-top: 60px;
+  text-align: center;
+}
+.footer a { color: #fff; margin: 0 12px; }
+.copy { margin-top: 20px; font-size: 14px; }

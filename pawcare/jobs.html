@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PawCare — Job Opportunities</title>
+  <meta name="description" content="Join PawCare as a dog walker, pet sitter, or groomer. Flexible schedules, great teams, real impact." />
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/jobs.css">
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="topbar">
+  <div class="container nav">
+    <a href="index.html#home" class="logo">Paw<span>Care</span>!</a>
+    <nav class="menu" id="menu">
+      <a href="health.html">Health</a>
+      <a href="shop.html">Shop</a>
+      <a href="bookings.html">Bookings</a>
+      <a href="index.html#why">Why PawCare</a>
+      <a href="index.html#reviews">Reviews</a>
+      <a href="jobs.html" aria-current="page">Join Our Team</a>
+      <a href="join-golden.html" class="golden-link">Golden</a>
+    </nav>
+    <div class="nav-right">
+      <div class="cta-phone">☎ (866) 338-2463</div>
+      <a href="join-golden.html" class="btn-gold">Golden Member</a>
+      <button class="hamburger" id="hamburger" aria-label="Open menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="job-hero">
+  <div class="container hero-content">
+    <h1>Job Opportunities</h1>
+    <p>Walk dogs, pet sit, groom, and make pet families happy — on your schedule.</p>
+    <a class="btn-primary" href="#apply">Apply Now</a>
+  </div>
+  <div class="wave-divider">
+    <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+      <path d="M0,48 C240,120 480,120 720,72 C960,24 1200,24 1440,72 L1440,120 L0,120 Z" fill="#fff"/>
+    </svg>
+  </div>
+</section>
+
+<!-- ===== WHY JOIN ===== -->
+<section class="section">
+  <div class="container grid-split">
+    <div>
+      <h2>Why join PawCare?</h2>
+      <ul class="tick-list">
+        <li>Flexible scheduling — pick shifts that fit your life.</li>
+        <li>Fair pay, tips, and bonuses for 5★ service.</li>
+        <li>Training, safety playbooks, and ongoing support.</li>
+        <li>GPS walk tracking + transparent notes for clients.</li>
+        <li>Work with a kind team that truly loves animals.</li>
+      </ul>
+    </div>
+    <div class="card soft">
+      <h3>Roles we’re hiring for</h3>
+      <div class="grid-services">
+        <article class="card"><h4>Dog Walker</h4><p>30/45/60-min walks with location notes & photos.</p></article>
+        <article class="card"><h4>Pet Sitter</h4><p>Drop-ins or in-home sits to keep routine steady.</p></article>
+        <article class="card"><h4>Groomer</h4><p>Bath, brush, ears, nails; gentle handling a must.</p></article>
+        <article class="card"><h4>On-Call Associate</h4><p>Help with logistics, last-minute requests.</p></article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== COMPENSATION ===== -->
+<section class="bg-cream section">
+  <div class="container">
+    <h2>Compensation (India)</h2>
+    <div class="grid-services">
+      <article class="card">
+        <h3>Dog Walking</h3>
+        <p class="lead"><strong>₹200–₹350</strong> per walk (30–60 min) + tips</p>
+      </article>
+      <article class="card">
+        <h3>Drop-in Sitting</h3>
+        <p class="lead"><strong>₹300–₹500</strong> per visit + tips</p>
+      </article>
+      <article class="card">
+        <h3>Overnight Care</h3>
+        <p class="lead"><strong>₹1,200–₹2,000</strong> per night</p>
+      </article>
+      <article class="card">
+        <h3>Grooming</h3>
+        <p class="lead"><strong>₹600–₹1,200</strong> per session</p>
+      </article>
+    </div>
+    <p class="tiny-note">Ranges vary by city and experience. Exact payouts are shown in your offer.</p>
+  </div>
+</section>
+
+<!-- ===== APPLICATION FORM ===== -->
+<section id="apply" class="section">
+  <div class="container grid-2">
+    <article class="card">
+      <h2>Apply now</h2>
+      <form id="jobForm" class="form-grid">
+        <label>Full name
+          <input type="text" name="name" required>
+        </label>
+        <label>Email
+          <input type="email" name="email" required>
+        </label>
+        <label>Phone
+          <input type="tel" name="phone" required>
+        </label>
+        <label>City
+          <input type="text" name="city" placeholder="Bengaluru" required>
+        </label>
+        <label>Role
+          <select name="role" required>
+            <option>Dog Walker</option>
+            <option>Pet Sitter</option>
+            <option>Groomer</option>
+            <option>On-Call Associate</option>
+          </select>
+        </label>
+        <label>Availability
+          <select name="availability" required>
+            <option>Weekdays</option>
+            <option>Weekends</option>
+            <option>Evenings</option>
+            <option>Full-time</option>
+          </select>
+        </label>
+        <label>Experience (optional)
+          <textarea name="exp" rows="3" placeholder="Tell us briefly about your experience…"></textarea>
+        </label>
+        <div class="form-row">
+          <button class="btn-primary" type="submit">Submit Application</button>
+          <a class="btn-ghost" href="index.html#careers">Back</a>
+        </div>
+      </form>
+    </article>
+
+    <article class="card soft" id="jobThanks" hidden>
+      <h2>Thanks! 🎉</h2>
+      <p>We’ve received your application. Our team will reach out via email within 2–3 business days.</p>
+      <a class="btn-primary" href="index.html#careers">Return to PawCare</a>
+    </article>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="container foot-grid">
+    <div>
+      <div class="phone">☎ (866) 338-2463</div>
+      <nav class="foot-links">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">About</a>
+      </nav>
+    </div>
+    <div class="badges">
+      <span class="badge">App Store</span>
+      <span class="badge">Google Play</span>
+    </div>
+  </div>
+  <div class="copy">© <span id="year"></span> PawCare. All rights reserved.</div>
+</footer>
+
+<!-- ===== SCRIPT ===== -->
+<script>
+document.getElementById('jobForm').addEventListener('submit', async (e)=>{
+  e.preventDefault();
+  const formData = Object.fromEntries(new FormData(e.target).entries());
+
+  try {
+    const r = await fetch("http://127.0.0.1:8000/apply", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData)
+    });
+
+    if (!r.ok) throw new Error(await r.text());
+
+    document.getElementById('jobThanks').hidden = false;
+    e.target.closest('.card').hidden = true;
+    window.scrollTo({ top: document.getElementById('jobThanks').offsetTop - 80, behavior: 'smooth' });
+  } catch (err) {
+    alert("Server error: " + err);
+    console.error(err);
+  }
+});
+
+// Update year in footer
+document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>

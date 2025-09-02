@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PawCare — Partner with Us</title>
+  <meta name="description" content="Operate a local PawCare area with our brand, tools, and playbooks. Training, software, and marketing included." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="container nav">
+    <a href="index.html#home" class="logo">Paw<span>Care</span>!</a>
+    <nav class="menu" id="menu">
+      <a href="health.html">Health</a>
+      <a href="shop.html">Shop</a>
+      <a href="bookings.html">Bookings</a>
+      <a href="index.html#why">Why PawCare</a>
+      <a href="index.html#reviews">Reviews</a>
+      <a href="jobs.html">Join Our Team</a>
+      <a href="join-golden.html" class="golden-link">Golden</a>
+    </nav>
+    <div class="cta-phone">(866) 338-2463</div>
+    <a href="join-golden.html" class="btn-gold">Golden Member</a>
+    <button class="hamburger" id="hamburger" aria-label="Open menu">☰</button>
+  </div>
+</header>
+
+<section class="service-hero" style="background-image:url('assets/img/shop-hero.png');">
+  <div class="container hero-content">
+    <h1>Partner with PawCare</h1>
+    <p class="sub">Operate a local PawCare area with our brand, tools, and training.</p>
+    <a class="btn-primary" href="#inquire">Start the conversation</a>
+  </div>
+  <div class="wave-divider"><svg viewBox="0 0 1440 120" preserveAspectRatio="none"><path d="M0,48 C240,120 480,120 720,72 C960,24 1200,24 1440,72 L1440,120 L0,120 Z" fill="#fff"/></svg></div>
+</section>
+
+<section id="inquire" class="section">
+  <div class="container grid-2">
+    <article class="card">
+      <h2>Partnership enquiry</h2>
+      <form id="partnerForm" class="form-grid">
+        <label>Full name
+          <input type="text" name="name" required>
+        </label>
+        <label>Email
+          <input type="email" name="email" required>
+        </label>
+        <label>Phone
+          <input type="tel" name="phone" required>
+        </label>
+        <label>City / Territory
+          <input type="text" name="city" placeholder="Hyderabad" required>
+        </label>
+        <label>Background
+          <textarea name="about" rows="4" placeholder="Tell us about your experience with pets, ops, or entrepreneurship…"></textarea>
+        </label>
+        <label>Estimated monthly time commitment
+          <select name="time" required>
+            <option>10–20 hours</option>
+            <option>20–40 hours</option>
+            <option>Full-time</option>
+          </select>
+        </label>
+        <div class="form-row">
+          <button class="btn-primary" type="submit">Send enquiry</button>
+          <a class="btn-ghost" href="index.html#careers">Back</a>
+        </div>
+      </form>
+    </article>
+
+    <article class="card soft" id="partnerThanks" hidden>
+      <h2>Thanks! 👋</h2>
+      <p>Your details are with our partnerships team. We’ll reach out within a few days to schedule a call.</p>
+      <a class="btn-primary" href="index.html#careers">Return to PawCare</a>
+    </article>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container">
+    <h2>Let’s build your city’s most loved pet-care service.</h2>
+    <a class="btn-primary" href="#inquire">Start the conversation</a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container foot-grid">
+    <div>
+      <div class="phone">☎ (866) 338-2463</div>
+      <nav class="foot-links">
+        <a href="#">Privacy</a><a href="#">Terms</a><a href="#">About</a>
+      </nav>
+    </div>
+    <div class="badges"><span class="badge">App Store</span><span class="badge">Google Play</span></div>
+  </div>
+  <div class="copy">© <span id="year"></span> PawCare. All rights reserved.</div>
+</footer>
+
+<script>
+document.getElementById("partnerForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const formData = {
+    name: e.target.name.value,
+    email: e.target.email.value,
+    phone: e.target.phone.value,
+    city: e.target.city.value,
+    about: e.target.about.value,
+    time: e.target.time.value
+  };
+
+  try {
+    const res = await fetch("http://127.0.0.1:8000/partner-apply", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData)
+    });
+
+    const data = await res.json();
+    if (res.ok) {
+      document.getElementById("partnerThanks").hidden = false;
+      e.target.closest(".card").hidden = true;
+      window.scrollTo({ top: document.getElementById("partnerThanks").offsetTop - 80, behavior: "smooth" });
+    } else {
+      alert("Error: " + (data.msg || data.error));
+    }
+  } catch (err) {
+    alert("Server error: " + err);
+  }
+});
+</script>
+
+</body>
+</html>

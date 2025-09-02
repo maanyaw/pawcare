@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PawCare — Applications Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .apps-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 24px;
+    }
+    .apps-table th, .apps-table td {
+      border: 1px solid var(--line);
+      padding: 10px 14px;
+      text-align: left;
+    }
+    .apps-table th {
+      background: var(--brand);
+      color: #fff;
+    }
+    .apps-table tr:nth-child(even) {
+      background: #f9fdfd;
+    }
+    .apps-table tr:hover {
+      background: #eef7f7;
+    }
+    .status-bar {
+      margin: 12px 0;
+      font-size: 14px;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="container nav">
+    <a href="index.html#home" class="logo">Paw<span>Care</span>!</a>
+    <nav class="menu">
+      <a href="health.html">Health</a>
+      <a href="shop.html">Shop</a>
+      <a href="bookings.html">Bookings</a>
+      <a href="jobs.html">Jobs</a>
+      <a href="applications.html" class="active">Applications</a>
+    </nav>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container">
+    <h1>Admin — Job Applications</h1>
+    <p class="lede">All job applications submitted via PawCare Careers</p>
+    <div class="status-bar" id="status">Loading applications...</div>
+
+    <table class="apps-table" id="appsTable" hidden>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>City</th>
+          <th>Role</th>
+          <th>Availability</th>
+          <th>Experience</th>
+          <th>Applied On</th>
+        </tr>
+      </thead>
+      <tbody id="appsBody"></tbody>
+    </table>
+  </div>
+</section>
+
+<script>
+async function loadApplications(){
+  try {
+    const res = await fetch("http://127.0.0.1:8000/applications"); // Flask endpoint
+    if (!res.ok) throw new Error("API error " + res.status);
+    const apps = await res.json();
+
+    const tbody = document.getElementById("appsBody");
+    tbody.innerHTML = "";
+
+    apps.forEach(app => {
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td>${app.id}</td>
+        <td>${app.name}</td>
+        <td>${app.email}</td>
+        <td>${app.phone}</td>
+        <td>${app.city}</td>
+        <td>${app.role}</td>
+        <td>${app.availability}</td>
+        <td>${app.exp || "-"}</td>
+        <td>${app.created_at}</td>
+      `;
+      tbody.appendChild(tr);
+    });
+
+    document.getElementById("status").textContent = `${apps.length} applications loaded ✅`;
+    document.getElementById("appsTable").hidden = false;
+
+  } catch (err) {
+    document.getElementById("status").textContent = "Failed to load applications ❌ " + err;
+  }
+}
+
+document.addEventListener("DOMContentLoaded", loadApplications);
+</script>
+
+</body>
+</html>

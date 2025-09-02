@@ -1,0 +1,25 @@
+{
+  "encoder": "all-MiniLM-L6-v2",
+  "feature_names": [
+    "weight_kg",
+    "age_yr",
+    "neutered",
+    "symptoms+conditions+allergies"
+  ],
+  "scaler_mean": [
+    0.6,
+    0.0,
+    0.0
+  ],
+  "scaler_scale": [
+    0.48989794855663565,
+    1.0,
+    1.0
+  ],
+  "feature_importance": {
+    "weight_kg": 0.0005025923200766653,
+    "age_yr": 1.8118644048179932e-05,
+    "neutered": 2.8431853040864308e-05,
+    "symptoms+conditions+allergies": 2.9074600625532643e-05
+  }
+}
