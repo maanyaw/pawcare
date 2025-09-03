@@ -67,6 +67,55 @@ The project demonstrates a **full-stack solution**:
 <img width="1913" height="748" alt="image" src="https://github.com/user-attachments/assets/90f0835c-c3a8-499b-afbe-5939427a788f" />
 <img width="1879" height="261" alt="image" src="https://github.com/user-attachments/assets/0284d068-c414-43cc-a84e-79af3d04b9ae" />
 
+## 🚀 Getting Started
+
+### 1️⃣ Clone the repository
+```bash
+git clone https://github.com/yourusername/pawcare.git
+cd pawcare
+2️⃣ Backend Setup (Flask + SQLite)
+Install dependencies:
+
+bash
+Copy code
+pip install -r requirements.txt
+Run the Flask server:
+
+bash
+Copy code
+python app.py
+Server runs at: http://127.0.0.1:8000
+
+3️⃣ Frontend
+Open index.html directly in your browser,
+or serve with a static server (e.g., VS Code Live Server).
+
+4️⃣ Train the AI Model
+bash
+Copy code
+python quick_train.py
+This will:
+
+Train the PyTorch model
+
+Save it to pawcare/api/models/pet_model.pt
+
+Generate meta.json with SHAP-based feature importance
+
+🛠️ Tech Stack
+
+Frontend → HTML, CSS, JavaScript
+
+Backend → Flask, SQLite
+
+AI/ML → PyTorch, Sentence-BERT, SHAP, Pandas, NumPy
+
+Other → Flask-CORS, scikit-learn
+
+## 👩‍💻 Author
+
+**Maanya Walia**  
+
 
 
 
