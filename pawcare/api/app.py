@@ -14,6 +14,113 @@ CORS(app)
 BASE_DIR = os.path.dirname(__file__)
 DB_PATH = os.path.join(BASE_DIR, "pawcare.db")
 
+# --- Model definition ---
+class PetModel(nn.Module):
+    def __init__(self, input_dim, output_dim=4):
+        super().__init__()
+        self.net = nn.Sequential(
+            nn.Linear(input_dim, 64), nn.ReLU(),
+            nn.Linear(64, 32), nn.ReLU(),
+            nn.Linear(32, output_dim)
+        )
+    def forward(self, x):
+        return self.net(x)
+
+# --- Load model + metadata ---
+BASE_DIR = os.path.dirname(__file__)
+MODEL_PATH = os.path.join(BASE_DIR, "models", "pet_model.pt")
+META_PATH = os.path.join(BASE_DIR, "models", "meta.json")
+CSV_PATH = os.path.join(BASE_DIR, "..", "data", "pet_meals.csv")
+
+# ✅ FIXED: path to SQLite DB
+DB_PATH = os.path.join(BASE_DIR, "pawcare.db")
+
+with open(META_PATH, "r") as f:
+    meta = json.load(f)
+
+input_dim = meta.get("input_dim", 387)   # fallback for embeddings+numerics
+encoder = SentenceTransformer(meta["encoder"])
+
+model = PetModel(input_dim=input_dim, output_dim=4)
+model.load_state_dict(torch.load(MODEL_PATH, map_location=torch.device("cpu")))
+model.eval()
+
+# --- Load meal DB from CSV ---
+MEAL_DB = pd.read_csv(CSV_PATH)
+
+@app.route("/", methods=["GET"])
+def home():
+    return "PawCare API is running with ML + SHAP ✅"
+
+@app.route("/predict", methods=["POST"])
+def predict():
+    try:
+        data = request.get_json()
+
+        # --- numeric features
+        weight = float(data.get("weightKg", 0))
+        age = float(data.get("age", 0))
+        neutered = 1 if str(data.get("neutered", "no")).lower() in ["1", "yes", "true"] else 0
+
+        # --- text fields → embeddings
+        text = " ".join([
+            str(data.get("symptoms", "")),
+            str(data.get("conditions", "")),
+            " ".join(data.get("allergies", []))
+        ])
+        text_emb = encoder.encode([text], convert_to_tensor=True).cpu().numpy()
+
+        # --- combine numeric + embeddings
+        X = np.concatenate([[weight, age, neutered], text_emb[0]])
+        X_tensor = torch.tensor(X, dtype=torch.float32).unsqueeze(0)
+
+        # --- predict
+        with torch.no_grad():
+            y_pred = model(X_tensor).cpu().numpy()[0]
+
+        # --- Meals (randomly sample 2 from pet_meals.csv)
+        meals = []
+        if not MEAL_DB.empty:
+            for _, row in MEAL_DB.sample(min(2, len(MEAL_DB))).iterrows():
+                meals.append({
+                    "title": row["meal_name"],
+                    "items": [i.strip() for i in str(row["ingredients"]).split(",") if i.strip()]
+                })
+
+        # --- Tips
+        tips = [{"source": "General", "text": "Ensure access to clean water at all times."}]
+        if "vomiting" in text.lower():
+            tips.append({"source": "Vet", "text": "Feed bland diet, avoid fatty foods."})
+        if "diabetes" in text.lower():
+            tips.append({"source": "Vet", "text": "Monitor blood sugar, avoid sugary treats."})
+
+        # --- Why this plan?
+        why = []
+        for feat in meta.get("shap_feature_importance", []):
+            why.append({
+                "name": feat.get("feature", "unknown"),
+                "weight": feat.get("importance", 0)
+            })
+
+        # --- Final response
+        response = {
+            "calories": round(float(y_pred[0]), 2),
+            "macros": {
+                "protein_g": round(float(y_pred[1]), 2),
+                "fat_g": round(float(y_pred[2]), 2),
+                "carb_g": round(float(y_pred[3]), 2),
+            },
+            "meals": meals,
+            "tips": tips,
+            "explain": {"top_features": why}
+        }
+        return jsonify(response)
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
+
 # ===================== DB Init =====================
 def init_db():
     conn = sqlite3.connect(DB_PATH)
@@ -133,3 +240,4 @@ def view_bookings():
 # =====================
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8000, debug=True)
+
