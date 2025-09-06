@@ -48,7 +48,6 @@ The project demonstrates a **full-stack solution**:
 <img width="778" height="796" alt="image" src="https://github.com/user-attachments/assets/8c7a425d-c731-419e-a5e7-1a5ba79b0a8d" />
 <img width="724" height="79" alt="image" src="https://github.com/user-attachments/assets/c4c02e0d-b0dc-45d5-903b-632f7a122ff5" />
 
-<img width="824" height="747" alt="image" src="https://github.com/user-attachments/assets/3c4e0138-142f-4140-81b2-4e1fff6000db" />
 <img width="1919" height="736" alt="image" src="https://github.com/user-attachments/assets/653e9fbb-b138-4ab2-ba37-fc9a1436ef64" />
 <img width="1919" height="944" alt="image" src="https://github.com/user-attachments/assets/4cdc8230-7296-45ff-9931-11b717e3ea6f" />
 <img width="1637" height="815" alt="image" src="https://github.com/user-attachments/assets/6e6a7f28-3831-4922-83a1-688f2ff98f88" />
