@@ -42,10 +42,7 @@ The project demonstrates a **full-stack solution**:
 
 
 <img width="1916" height="1020" alt="image" src="https://github.com/user-attachments/assets/f13c49d7-7ab3-4809-bf51-29ca10464d8b" />
-<img width="1880" height="937" alt="image" src="https://github.com/user-attachments/assets/3042bd3c-6317-4188-842b-4549e6feb3e2" />
-<img width="1893" height="775" alt="image" src="https://github.com/user-attachments/assets/e43b6861-1ac3-4191-a102-b59f25a25218" />
-<img width="1898" height="783" alt="image" src="https://github.com/user-attachments/assets/41e0f90e-8552-492d-8304-0441e717f26b" />
-<img width="1893" height="777" alt="image" src="https://github.com/user-attachments/assets/5ebcde88-91ce-48a8-bf02-6ea90261815b" />
+
 <img width="1876" height="915" alt="image" src="https://github.com/user-attachments/assets/1f1e1d5f-ca57-47bf-b47f-372140a82082" />
 <img width="1326" height="674" alt="image" src="https://github.com/user-attachments/assets/b44d036c-a0d2-4b16-af89-7d86fbaede69" />
 <img width="778" height="796" alt="image" src="https://github.com/user-attachments/assets/8c7a425d-c731-419e-a5e7-1a5ba79b0a8d" />
@@ -66,6 +63,10 @@ The project demonstrates a **full-stack solution**:
 <img width="1916" height="944" alt="image" src="https://github.com/user-attachments/assets/0011bd31-d508-4366-8e46-a37843be534a" />
 <img width="1913" height="748" alt="image" src="https://github.com/user-attachments/assets/90f0835c-c3a8-499b-afbe-5939427a788f" />
 <img width="1879" height="261" alt="image" src="https://github.com/user-attachments/assets/0284d068-c414-43cc-a84e-79af3d04b9ae" />
+<img width="1880" height="937" alt="image" src="https://github.com/user-attachments/assets/3042bd3c-6317-4188-842b-4549e6feb3e2" />
+<img width="1893" height="775" alt="image" src="https://github.com/user-attachments/assets/e43b6861-1ac3-4191-a102-b59f25a25218" />
+<img width="1898" height="783" alt="image" src="https://github.com/user-attachments/assets/41e0f90e-8552-492d-8304-0441e717f26b" />
+<img width="1893" height="777" alt="image" src="https://github.com/user-attachments/assets/5ebcde88-91ce-48a8-bf02-6ea90261815b" />
 
 
 ## 🛠️ Tech Stack
