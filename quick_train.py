@@ -1,4 +1,3 @@
-# quick_train.py
 import os
 import json
 import torch
@@ -29,14 +28,12 @@ def load_data(csv_path="pawcare/data/pet_meals.csv"):
 
 # --- Convert to features ---
 def make_features(df, encoder):
-    # Numeric cleanup
     df["weight_kg"] = pd.to_numeric(df["weight_kg"], errors="coerce").fillna(0)
     df["age_yr"]    = pd.to_numeric(df["age_yr"], errors="coerce").fillna(0)
     df["neutered"]  = df["neutered"].apply(lambda x: 1 if str(x).strip().lower() in ["1","yes","true"] else 0)
 
     X_num = df[["weight_kg", "age_yr", "neutered"]].values.astype(float)
 
-    # Text embeddings
     texts = (
         df["symptoms"].fillna("").astype(str) + " " +
         df["conditions"].fillna("").astype(str) + " " +
@@ -44,11 +41,9 @@ def make_features(df, encoder):
     ).tolist()
     X_text = encoder.encode(texts, convert_to_tensor=True).cpu().numpy()
 
-    # Combine
     X = np.hstack([X_num, X_text])
     X = torch.tensor(X, dtype=torch.float32)
 
-    # Targets (exclude meal_name, ingredients!)
     target_cols = ["kcal","pct_protein","pct_fat","pct_carb"]
     y = df[target_cols].apply(pd.to_numeric, errors="coerce").fillna(0).values
     y = torch.tensor(y, dtype=torch.float32)
@@ -62,19 +57,21 @@ def train(csv_path):
 
     X, y = make_features(df, encoder)
 
-    # Scale numeric
+    # Scale numeric features
     scaler = StandardScaler()
     X_np = X.numpy()
     X_np[:, :3] = scaler.fit_transform(X_np[:, :3])
     X = torch.tensor(X_np, dtype=torch.float32)
 
-    # Split
+    # Train/val split
     X_train, X_val, y_train, y_val = train_test_split(X, y, test_size=0.2, random_state=42)
 
+    # Model setup
     model = PetModel(input_dim=X.shape[1], output_dim=4)
     loss_fn = nn.MSELoss()
     optim = torch.optim.Adam(model.parameters(), lr=1e-3)
 
+    # Training loop
     for epoch in range(50):
         model.train()
         optim.zero_grad()
@@ -87,45 +84,48 @@ def train(csv_path):
             val_loss = loss_fn(model(X_val), y_val).item()
             print(f"Epoch {epoch:02d} | train loss {loss.item():.4f} | val loss {val_loss:.4f}")
 
-    # Save model + metadata dir
+    # Save model
     models_dir = os.path.join(os.path.dirname(__file__), "pawcare", "api", "models")
     os.makedirs(models_dir, exist_ok=True)
     torch.save(model.state_dict(), os.path.join(models_dir, "pet_model.pt"))
 
-    # --- SHAP (lightweight) ---
+    # --- SHAP ---
     model.eval()
-
-    # Wrap model to accept numpy
     def predict_fn(data_np):
         data_t = torch.tensor(data_np, dtype=torch.float32)
         with torch.no_grad():
-            return model(data_t).numpy()
+            return model(data_t).detach().numpy()
 
     background = X_train[:min(20, len(X_train))].numpy()
     explainer = shap.KernelExplainer(predict_fn, background)
     shap_values = explainer.shap_values(X_val[:5].numpy(), nsamples=50)
 
-    # Aggregate embeddings → 1 feature
     mean_abs = np.abs(shap_values[0]).mean(axis=0)
-    f_importance = {
-        "weight_kg": float(mean_abs[0]),
-        "age_yr": float(mean_abs[1]),
-        "neutered": float(mean_abs[2]),
-        "symptoms+conditions+allergies": float(mean_abs[3:].mean())
-    }
+    text_importance = float(mean_abs[3:].mean()) if len(mean_abs) > 3 else 0.0
 
+    shap_features = [
+        {"name": "weight_kg", "value": float(mean_abs[0])},
+        {"name": "age_yr", "value": float(mean_abs[1])},
+        {"name": "neutered", "value": float(mean_abs[2])},
+        {"name": "symptoms+conditions+allergies", "value": text_importance}
+    ]
+
+    # Sort & keep top 5
+    shap_features = sorted(shap_features, key=lambda x: x["value"], reverse=True)[:5]
+
+    # Save metadata
     meta = {
         "encoder": "all-MiniLM-L6-v2",
-        "feature_names": list(f_importance.keys()),
+        "input_dim": X.shape[1],
         "scaler_mean": scaler.mean_.tolist(),
         "scaler_scale": scaler.scale_.tolist(),
-        "feature_importance": f_importance
+        "shap_feature_importance": shap_features
     }
 
     with open(os.path.join(models_dir, "meta.json"), "w") as f:
         json.dump(meta, f, indent=2)
 
-    print("✅ Model + metadata (with SHAP simplified) saved in", models_dir)
+    print("✅ Model + metadata (with SHAP) saved in", models_dir)
 
 
 if __name__ == "__main__":
