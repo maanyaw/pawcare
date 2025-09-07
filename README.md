@@ -4,7 +4,7 @@
 ![Flask](https://img.shields.io/badge/Flask-Backend-lightgrey?logo=flask)
 ![SQLite](https://img.shields.io/badge/SQLite-DB-blue?logo=sqlite)
 ![PyTorch](https://img.shields.io/badge/PyTorch-ML-orange?logo=pytorch)
-![License: MIT](https://img.shields.io/badge/License-MIT-green)
+
 
 **PawCare** is an **AI-driven Pet Health and Services Platform** that combines  
 🐶 **AI-powered nutrition recommendations**,  
