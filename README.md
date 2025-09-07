@@ -25,7 +25,7 @@ The project demonstrates a **full-stack solution**:
 - Responsive **HTML/CSS/JS** website  
 - Pages for **Health, Shop, Bookings, Careers, Golden Membership**  
 - Booking forms integrated with Flask backend  
-- Clean, accessible design with **mobile-first layout**
+- Clean and accessible design
 
 ### ⚙️ Backend (Flask + SQLite)
 - Job Applications → `POST /apply`, `GET /applications`  
@@ -34,7 +34,7 @@ The project demonstrates a **full-stack solution**:
 - Auto-initialized SQLite DB (`pawcare.db`)  
 
 ### 🤖 AI/ML Pipeline
-- Data: [`data/pet_meals.csv`](data/pet_meals.csv) with pet attributes + nutrition targets  
+- Data: [`pet_meals.csv`](pet_meals.csv) with pet attributes + nutrition targets  
 - Model: Custom **PyTorch MLP (`PetModel`)**  
 - Text features: **Sentence-BERT** embeddings for symptoms/conditions  
 - Explainability: **SHAP** (feature importance stored in `meta.json`)  
